@@ -294,24 +294,41 @@ image::traslation_rule_guide.png[{full-width}]
 クラスの候補（モノ）を下記に列挙しなさい（クラスの候補になるものでよい）
 
 .クラスの候補（下記リストを書き換える）
-* main_task
+* main_task プログラム全体のエントリーポイント（開始点）であり、システムの初期設定とメインループを管理するクラス。
 * motor
-* クラス候補のモノA
-* クラス候補のモノB
+
+* Porter: 搬送ロボット全体の振る舞いを管理します。状態（荷物待ち、運搬中など）を持ちます。
+
+* Tracer: ライントレース走行の責務を持ちます。
+
+* Driver: モーターを直接制御し、ロボットを動かす責務を持ちます。
+
+* Carrier: 荷台を表し、荷物が積まれているかを検知します。
+
+* WallDetector: 壁を検知するセンサーの責務を持ちます。
+
+* Bumper: バンパーセンサーの責務を持ちます。
+
+* LineMonitor: ライントレース用のカラーセンサーの責務を持ちます。
 
 操作の候補（働き）の候補を列挙しなさい（候補でよい）。
 もし、クラスが決定できるなら、後のかっこ内に記載しておきなさい。
 
 .操作の候補（下記リストを書き換える）
-. set_poweer（motor）
-. 操作候補の働き1（クラス候補A）
-. 操作候補の働き2（クラス候補B）
+* Porter:porter_transport()
+* Tracer:tracer_run(),tracer_stop()
+* Driver:driver_turn_left(),driver_turn_right(),driver_stop()
+* Carrier:carrier_cargo_is_loaded()
+* WallDetector:wall_detector_is_detected()
+* Bumper:bumper_is_pushed()
+* LineMonitor:linemon_is_online()
 
 関連の候補（クラス間のつながり）を下記に列挙しなさい（候補でよい）
 
 .関連の候補（下記リストを書き換える）
 . main_task -> transporter
-. クラス候補 -> クラス候補
+. Porter は Tracer, Carrier, WallDetector, Bumper を利用します。
+. Tracer は Driver と LineMonitor を利用します。
 
 ==== sample04のプロジェクトを作成する
 
