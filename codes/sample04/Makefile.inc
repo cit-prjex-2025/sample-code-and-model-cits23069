@@ -7,10 +7,13 @@ ifdef USE_CXX
 	APPL_CXXOBJS +=
 	APPL_COBJS += util.o
 else
-	APPL_COBJS += util.o
+	APPL_COBJS += util.o \
+	              tracer.o \
+	              bumper.o \
+	              wall_detector.o
 endif
 
-APPL_DIRS += $(mkfile_path)app $(mkfile_path)/../util
+APPL_DIRS += $(mkfile_path) $(mkfile_path)app $(mkfile_path)/../util
 INCLUDES += \
 	-I$(mkfile_path)app \
 	-I$(mkfile_path)/../util
